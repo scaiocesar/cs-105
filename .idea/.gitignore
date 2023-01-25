@@ -1,0 +1,17 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+# Datasource local storage ignored files
+/dataSources/
+/dataSources.local.xml
+# Zeppelin ignored files
+/ZeppelinRemoteNotebooks/
+
+jpa-buddy.xml
+CS_105_Intro_programmin.iml
+misc.xml
+modules.xml
+uiDesigner.xml
+vcs.xml
