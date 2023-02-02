@@ -7,10 +7,15 @@ public class Test {
 
 
 
+        double t = 23.222222;
+        for (int i = 0; i <= 1000; i += 100) {
+            String a = Integer.toString(i);
+            a += ":";
+            System.out.printf("test %-10s  $%,.2f %n",a ,t += t*2 );
+        }
 
-        Date date = new Date();
-        System.out.printf("US time format= %1$td/%1$tm/%1$tY %n", date);
-        System.out.printf("World time format= %1$tm/%1$td/%1$tY %n", date);
+
+
 
 
 
