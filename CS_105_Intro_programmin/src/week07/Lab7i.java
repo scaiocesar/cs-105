@@ -3,82 +3,77 @@ package week07;
 import java.time.LocalDate;
 import java.util.Scanner;
 
-public class Lab7a {
+public class Lab7i {
+    static Scanner in = new Scanner(System.in);
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        String name = "";
-        int yob = 0 ;
+        //Play the game until the user says they don't want to play again.
+        String playAgain = "Y";
 
-        boolean keepPlay = true;
+        while (playAgain.equalsIgnoreCase("Y")) {
+            //Get an integer from the user
+            int intNum = getValidInt("Please enter a whole number: ", "Invalid response. Only whole numbers are acceptable.");
+            System.out.printf("The whole number your entered was: %d.\n", intNum);
+            System.out.println("Now we will test your whole number in a math equation...");
+            System.out.printf("Adding 10 to your whole number would be: 10 + %d = %d.\n", intNum, intNum + 10);
+            System.out.println();
 
-        System.out.println("This program will ask the user to enter a name and a birth year for a potential student.");
-        System.out.println("The program will then determine what type of school, if any, the potential student is eligible to attend.");
-        while(keepPlay) {
+            //Get a floating-point from the user
+            double doubleNum = getValidDouble("Please enter a decimal-point number: ", "Invalid response. Only decimal-point numbers are acceptable.");
+            System.out.printf("The float your entered was: %f.\n", doubleNum);
+            System.out.println("Now we will test your floating-point number in a math equation...");
+            System.out.printf("Adding 10 to your float would be: 10 + %f = %f.\n", doubleNum, doubleNum + 10);
+            System.out.println();
 
+            //Get a 'Y' or 'N' from the user
+            playAgain = getValidYN("Would you like to play again? (Y/N): ", "Invalid response.  Please answer with a 'Y' or 'N'");
+            System.out.println();
+        }// end of while (playAgain.equalsIgnoreCase("y"))
+        System.out.println("Goodbye!");
+    }// end of Main()
 
-            System.out.print("Please enter the name of a potential student: ");
-            name = in.nextLine();
+    public static int getValidInt(String question, String warning){
+        int response = 0;
 
-            yob = validateInputInt(in,"Please enter the year the potential student was born:");
-
-            checkEligibility(name,yob);
-
-            keepPlay = isStillPlay(in, "Would you like to play again? (Y/N): ");
-        }
-
-
-
-    }
-
-    public static void checkEligibility(String name, int year){
-        int age = calculateAge(year);
-        if(age <= 4){
-            System.out.println( name+ " is "+age+" years old. "+name+" is too young to attend school.");
-        } else if (age >= 5 && age <= 11) {
-            System.out.println( name+ " is "+age+" years old. "+name+" may attend Elementary School");
-        }else if (age >= 12 && age <= 14) {
-            System.out.println( name+ " is "+age+" years old. "+name+" may attend Jr. High School");
-        }else if (age >= 15 && age <= 17) {
-            System.out.println( name+ " is "+age+" years old. "+name+" may attend High School");
-        }else{
-            System.out.println( name+ " is "+age+" years old. "+name+" may attend College");
-        }
-    }
-
-    public static int calculateAge(int year){
-        LocalDate currentTime = LocalDate.now();
-        int currentYear = currentTime.getYear();
-        int age = currentYear - year;
-        return age;
-    }
-
-    public static boolean isStillPlay(Scanner in, String prompt) {
-        while (true) {
-            System.out.print(prompt);
-            String resp = in.nextLine();
-            if (resp.equalsIgnoreCase("Y")) {
-                return true;
-            } else if (resp.equalsIgnoreCase("N")) {
-                return false;
-            } else {
-                System.out.println(" Please answer with a 'Y' or 'N'");
-            }
-        }
-    }
-
-    public static int validateInputInt(Scanner in, String prompt) {
-        int number = 0;
         while (true) {
             try {
-                System.out.print(prompt);
-                number = Integer.parseInt(in.nextLine());
+                System.out.print(question);
+                response = Integer.parseInt(in.nextLine());
                 break;
             } catch (Exception e) {
-                System.out.println("Please enter a whole number for the birth year." );
+                System.out.println(warning);
             }
         }
-        return number;
+        return response;
     }
+    public static double getValidDouble(String question, String warning){
+        double response = 0;
+
+        while (true) {
+            try {
+                System.out.print(question);
+                response = Double.parseDouble(in.nextLine());
+                break;
+            } catch (Exception e) {
+                System.out.println(warning);
+            }
+        }
+        return response;
+    }
+
+    public static String getValidYN(String question, String warning){
+        while (true) {
+            System.out.print(question);
+            String resp = in.nextLine();
+            if (resp.equalsIgnoreCase("Y")) {
+                return "Y";
+            } else if (resp.equalsIgnoreCase("N")) {
+                return "N";
+            } else {
+                System.out.println(warning);
+            }
+        }
+    }
+
 
 
 
