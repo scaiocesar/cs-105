@@ -10,6 +10,7 @@ public class Lab10a {
 	
     File students = new File ("StudentAssignmentScores.csv");
     Scanner readstud = null;
+	String a = "test";
     
     try {
 		readstud = new Scanner(students);
